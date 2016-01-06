@@ -1,0 +1,23 @@
+{
+  "version":"1.0",
+  "metadata": {
+    "date": "2015-12-20"
+  },
+  "data": [
+    {
+      "value": "debug",
+      "default": true,
+      "meta": "fmt.Println(\"Running on Debug\")"
+    },
+    {
+      "value": "production",
+      "default": false,
+      "meta": "fmt.Println(\"Running on Production\")"
+    },
+    {
+      "value": "test",
+      "default": false,
+      "meta": "fmt.Println(\"Running on Test\")"
+    }
+  ]
+}
