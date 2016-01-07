@@ -17,8 +17,9 @@ type Generator struct {
 }
 
 // Printf prints formatted-message to buffer.
-func (g *Generator) Printf(format string, args ...interface{}) {
-	fmt.Fprintf(&g.buf, format, args...)
+func (g *Generator) Printf(format string, args ...interface{}) (n int, err error) {
+	n, err = fmt.Fprintf(&g.buf, format, args...)
+	return
 }
 
 // String returns the gofmt-ed contents of the Generator's buffer.
