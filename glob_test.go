@@ -48,7 +48,7 @@ func TestParseGlobs(t *testing.T) {
 
 	var result []string
 	var err error
-	result, err = ParseGlobs([]string{"t/**/*"})
+	result, err = ParseGlobs([]string{"t/*/*"})
 	if assert.NoError(err) {
 		if assert.Equal(2, len(result)) {
 			re := regexp.MustCompile("t/foo/sample[12].txt")
@@ -62,6 +62,16 @@ func TestParseGlobs(t *testing.T) {
 	if assert.NoError(err) {
 		if assert.Equal(3, len(result)) {
 			re := regexp.MustCompile("t/(foo/|)sample(|1|2).txt")
+			for _, v := range result {
+				assert.True(re.Match([]byte(v)))
+			}
+		}
+	}
+
+	result, err = ParseGlobs([]string{"t/*/*1.txt"})
+	if assert.NoError(err) {
+		if assert.Equal(1, len(result)) {
+			re := regexp.MustCompile("t/foo/sample[1].txt")
 			for _, v := range result {
 				assert.True(re.Match([]byte(v)))
 			}
