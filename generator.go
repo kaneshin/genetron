@@ -1,5 +1,5 @@
-// Package genetron ...
-package genetron
+// Package genex ...
+package genex
 
 import (
 	"bytes"

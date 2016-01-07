@@ -13,7 +13,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/kaneshin/genetron"
+	"github.com/kaneshin/genex"
 	"github.com/serenize/snaker"
 )
 
@@ -66,7 +66,7 @@ func main() {
 func run() int {
 	var (
 		args = flag.Args()
-		g    genetron.Generator
+		g    genex.Generator
 	)
 
 	// Print the header and package clause.

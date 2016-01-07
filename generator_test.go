@@ -1,4 +1,4 @@
-package genetron
+package genex
 
 import (
 	"strings"

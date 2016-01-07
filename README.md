@@ -1,9 +1,9 @@
-# genetron
+# genex
 
 ## Installation
 
 ```
-go get -u github.com/kaneshin/genetron
+go get -u github.com/kaneshin/genex
 ```
 
 ## License
