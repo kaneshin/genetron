@@ -1,0 +1,30 @@
+machine:
+  environment:
+    CHECKOUT_PATH: $HOME/$CIRCLE_PROJECT_REPONAME
+  pre:
+    - >
+      curl -o go.tar.gz -sL https://storage.googleapis.com/golang/go1.5.2.linux-amd64.tar.gz &&
+      sudo rm -rf /usr/local/go &&
+      sudo tar -C /usr/local -xzf go.tar.gz &&
+      sudo chmod a+w /usr/local/go/src/
+  post:
+    - >
+      echo "export BUILD_VERSION=\"`git --git-dir=${CHECKOUT_PATH}/.git describe --always --dirty`\"" >> ~/.circlerc;
+      echo "export BUILD_DATE=\"`date +%FT%T%z`\"" >> ~/.circlerc;
+      cat ~/.circlerc
+
+dependencies:
+  pre:
+    - go get -v github.com/golang/lint/golint
+
+test:
+  pre:
+    - go version
+  override:
+    - test -z "$(gofmt -s -l . | tee /dev/stderr)"
+    - go vet ./...
+    - test -z "$(golint ./... | tee /dev/stderr)"
+    - go test -race -test.v ./...
+    - pip install --user codecov
+    - codecov --token=$CODECOV_TOKEN;
+
