@@ -7,7 +7,7 @@ import (
 	"go/format"
 	"log"
 
-	"github.com/golang/lint"
+	"golang.org/x/lint"
 )
 
 // Generator holds the state of generator.
