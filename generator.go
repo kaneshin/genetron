@@ -22,7 +22,12 @@ func (g *Generator) Printf(format string, args ...interface{}) (n int, err error
 	return
 }
 
-// String returns the gofmt-ed contents of the Generator's buffer.
+// Bytes returns the contents of the Generator's buffer.
+func (g *Generator) Bytes() []byte {
+	return g.buf.Bytes()
+}
+
+// String returns the gofmt-ed contents.
 func (g *Generator) String() string {
 	return string(g.Format())
 }
